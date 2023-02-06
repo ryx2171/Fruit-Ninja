@@ -1,6 +1,6 @@
-# Pixi.js Project #
+# Fruit Ninja Game #
 
-A generic frontend **Pixi.js** project boiler plate in **TypeScript** using **Webpack**.
+A **Pixi.js** created using **TypeScript** and **Webpack**.
 
 
 
@@ -17,7 +17,7 @@ Main dependencies:
 
 Node, TypeScript and TSLint should be installed globally.
 
-	$> git clone https://github.com/ryx2171/Fruit-Ninja.git <new folder>
+	$> git clone https://github.com/ryx2171/Fruit-Ninja.git<new folder>
 	$> cd <new folder>
 	$> git init
 	$> npm install
