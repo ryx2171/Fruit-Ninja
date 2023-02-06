@@ -1,0 +1,44 @@
+body{
+    background-color: #222222;
+    color: white;
+    font: 1em sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+canvas{
+    background: black;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    width: 100vw;
+}
+
+@media screen and (orientation:portrait) { 
+    canvas{
+
+        height: auto;
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+@media screen and (orientation:landscape) { 
+    canvas{
+  
+        height: 100vh;
+        width: auto;
+        
+    }
+    h1{
+        display: none;
+    }
+
+    body{
+        text-align: center;
+        margin:auto;
+    }
+}
