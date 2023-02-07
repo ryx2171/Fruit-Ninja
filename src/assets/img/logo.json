@@ -1,0 +1,44 @@
+﻿{"frames": {
+
+"fruit_logo10000":
+{
+	"frame": {"x":5,"y":5,"w":394,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":394,"h":153},
+	"sourceSize": {"w":394,"h":153}
+},
+"fruit_logo20000":
+{
+	"frame": {"x":5,"y":163,"w":394,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":394,"h":153},
+	"sourceSize": {"w":394,"h":153}
+},
+"slash0000":
+{
+	"frame": {"x":5,"y":321,"w":220,"h":73},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":220,"h":73},
+	"sourceSize": {"w":220,"h":73}
+}},
+
+"animations": {
+	"img": [
+			"fruit_logo10000",
+			"fruit_logo20000",
+			"slash0000"
+	]
+},
+
+"meta": {
+	"app": "Adobe Animate",
+	"version": "22.0.0.93",
+	"image": "logo.png",
+	"format": "RGBA8888",
+	"size": {"w":512,"h":512},
+	"scale": "1"
+}
+}

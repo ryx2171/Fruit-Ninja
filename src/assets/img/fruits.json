@@ -192,6 +192,37 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":117,"h":159},
 	"sourceSize": {"w":117,"h":159}
 }},
+
+"animations": {
+	"img": [
+			"game_fruit_orange_w0000",
+			"game_fruit_orange_s0000",
+			"game_fruit_orange_l0000",
+			"game_fruit_orange_r0000",
+			"game_fruit_blue_w0000",
+			"game_fruit_blue_s0000",
+			"game_fruit_blue_l0000",
+			"game_fruit_blue_r0000",
+			"game_fruit_green_w0000",
+			"game_fruit_green_s0000",
+			"game_fruit_green_l0000",
+			"game_fruit_green_r0000",
+			"game_fruit_purple_w0000",
+			"game_fruit_purple_s0000",
+			"game_fruit_purple_l0000",
+			"game_fruit_purple_r0000",
+			"game_fruit_red_w0000",
+			"game_fruit_red_s0000",
+			"game_fruit_red_l0000",
+			"game_fruit_red_r0000",
+			"game_fruit_yellow_s0000",
+			"game_fruit_yellow_l0000",
+			"game_fruit_yellow_r0000"
+		]
+},
+
+
+
 "meta": {
 	"app": "Adobe Animate",
 	"version": "22.0.0.93",

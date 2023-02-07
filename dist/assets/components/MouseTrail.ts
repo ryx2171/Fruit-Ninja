@@ -42,12 +42,12 @@ export class MouseTrail extends PIXI.Sprite{
         const rope:PIXI.SimpleRope = new PIXI.SimpleRope(this.trailTexture, this.points);
 
         // Set the blendmode
-        rope.blendMode = PIXI.BLEND_MODES.COLOR_BURN;
+        //rope.blendMode = PIXI.BLEND_MODES.COLOR_BURN;
         this.addChild(rope);
 
         this.app.stage.interactive = true;
         this.app.stage.hitArea = this.app.screen;
-        this.app.stage.on('mousemove', (event:any) => {
+        this.app.stage.on('pointermove', (event:any) => {
             this.mouseposition = this.mouseposition || { x: 0, y: 0 };
             this.mouseposition.x = event.data.global.x;
             this.mouseposition.y = event.data.global.y;

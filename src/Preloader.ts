@@ -18,7 +18,11 @@ export default class Preload {
 
         this.pixiapp.loader
         .add('game_bg.jpg' ,        'game_bg.jpg')
+        .add('game_bg2.png' ,        'game_bg2.png')
+        .add('board.png' ,        'board.png')
         .add('fruits' ,             'fruits.json')
+        .add('logo' ,             'logo.json')
+        .add('sprites1' ,             'sprites1.json')
 
         ;//end of preload
         //this.pixiapp.loader.onProgress.add(this.showProgress,this.pixiapp);

@@ -6,11 +6,19 @@ body{
     margin: 0;
     padding: 0;
     overflow: hidden;
+    font-family: "JAPANESE_2020";
+    /*background-image: url("../img/bg-pattern.png");
+    background-repeat: repeat-x;*/
+}
+
+@font-face{
+    font-family: "JAPANESE_2020";
+    src: url('/src/assets/font/japan.otf');
 }
 
 canvas{
     background: black;
-    width: 100vw;
+    width: auto;
     height: 100vh;
     overflow: hidden;
     width: 100vw;

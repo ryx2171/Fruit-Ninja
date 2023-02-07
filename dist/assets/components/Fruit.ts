@@ -12,13 +12,15 @@ export class Fruits extends PIXI.Sprite{
    
     fruitTextures:string[] = 
     [
+        "game_fruit_green",
+        "game_fruit_yellow",
+        "game_fruit_purple",
         "game_fruit_orange",
         "game_fruit_red",
-        "game_fruit_green",
-        "game_fruit_purple",
-        "game_fruit_yellow",
         "game_fruit_blue"
-    ]
+    ];
+
+    fruitTextureId:number;
 
     fruit:PixiAtlas;
     rightFruit:PixiAtlas;
@@ -42,6 +44,7 @@ export class Fruits extends PIXI.Sprite{
         this._id = _id;
         this._currentTexture = "";
         this._obj_id = obj_id;
+        this.fruitTextureId = 0;
 
         this.fruit = this.addChild( new PixiAtlas( sheet, _id ) );
         this.fruit.anchor.set(0.5);
@@ -55,29 +58,29 @@ export class Fruits extends PIXI.Sprite{
         this.lefttFruit.anchor.set(0.5);
         this.lefttFruit.position.set(-20,0);
 
-        
+        this.interactiveChildren = true;
+
         this.on("pointerdown",()=>{
-            this.animateSlash();
-            this.interactive = false;
-            this._isHit = true;
+            this.popFruit();
+        }).on("pointerover",()=>{
+            this.popFruit();
         })
 
-        this.on("pointerover",()=>{
-            this.animateSlash();
-            this.interactive = false;
-            this._isHit = true;
-        })
     }
 
-   
+    popFruit(){
+        this.animateSlash();
+        this.interactive = false;
+        this._isHit = true;
+    }
 
     init(){
 
         if(this._isHit == false){
-            this.updateTexture(generateRandom(6));
+            this.fruitTextureId =  generateRandom(6);
+            this.updateFruitTexture( this.fruitTextures[this.fruitTextureId] );
         }
         
-
         this.interactive = true;
         this.fruit.visible = true;
         this.rightFruit.visible = false;
@@ -94,15 +97,15 @@ export class Fruits extends PIXI.Sprite{
 
     }
 
-    updateTexture(_id:number){
-
-        this._currentTexture = this.fruitTextures[_id]
+    updateFruitTexture(_texture:string){
+        this._currentTexture = _texture;
         this.fruit.changeTexture( this._currentTexture + "_w" );
-        this.lefttFruit.changeTexture(this._currentTexture + "_l");
-        this.rightFruit.changeTexture(this._currentTexture + "_r");
-    
-        console.log("_id",_id,this.fruitTextures[_id])
-        //this.splash.changeTexture(fruitTexture[_id] + "_s");
+    }
+
+    updateSliceTexture(){
+        this._currentTexture = this.fruit.texture.textureCacheIds[0].split("_w")[0]
+        this.lefttFruit.changeTexture(  this._currentTexture  + "_l");
+        this.rightFruit.changeTexture(  this._currentTexture + "_r");
     }
 
     triggerSlashEvent(){
@@ -111,6 +114,8 @@ export class Fruits extends PIXI.Sprite{
 
 
     animateSlash(){
+
+        this.updateSliceTexture();
 
         this.triggerSlashEvent();
 

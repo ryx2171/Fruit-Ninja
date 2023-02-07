@@ -36,3 +36,8 @@ export function setFullscreen(_id:boolean){
 export function degToRad(deg:number):number {
   return deg * (Math.PI / 180.0);
 }
+
+
+export function numberComma(x:number) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
