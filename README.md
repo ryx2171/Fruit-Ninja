@@ -25,6 +25,7 @@ Full Dependencies
   * "webpack": "^5.75.0",
   * "webpack-cli": "^5.0.1"
   * "webpack-dev-server": "^4.11.1"
+  * "@types/howler": "^2.2.7"
 
 ## Installation ##
 
