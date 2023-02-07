@@ -7,7 +7,7 @@ type MouseObj = {
 
 export class MouseTrail extends PIXI.Sprite{
     // Get the texture for rope.
-     trailTexture = PIXI.Texture.from('../assets/img/trail2.png');
+     trailTexture = PIXI.Texture.from('assets/img/trail2.png');
      historyX:number[] = [];
      historyY:number[] = [];
     // historySize determines how long the trail will be.
