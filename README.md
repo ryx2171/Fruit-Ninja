@@ -11,6 +11,7 @@ Main dependencies:
 * **Compiler**: [TypeScript](https://github.com/Microsoft/TypeScript)
 * **Bundler**: [Webpack](https://github.com/webpack/webpack)
 * **Pixi.js**: [Pixi.js](http://www.pixijs.com/)
+*  **Howler.js** [Howler.js](https://www.npmjs.com/package/@types/howler)
 
 Full Dependencies
 
@@ -25,6 +26,7 @@ Full Dependencies
   * "webpack": "^5.75.0",
   * "webpack-cli": "^5.0.1"
   * "webpack-dev-server": "^4.11.1"
+  * "@types/howler": "^2.2.7"
 
 ## Installation ##
 
