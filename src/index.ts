@@ -2,12 +2,12 @@
 
 import * as PIXI from 'pixi.js';
 import Preload from './Preloader';
-import { PixiAtlas } from './assets/components/CustomPixi';
+import { PixiAtlas } from './components/CustomPixi';
 import {gsap, Sine, Back, Strong} from "gsap";
 import GameSettings from './GameSettings'; 
-import { Fruits } from './assets/components/Fruit';
-import { generateRandom, degToRad, numberComma } from './assets/components/Utils';
-import { MouseTrail } from './assets/components/MouseTrail';
+import { Fruits } from './components/Fruit';
+import { generateRandom, degToRad, numberComma } from './components/Utils';
+import { MouseTrail } from './components/MouseTrail';
 import SoundFX from './assets/snd/SoundFX';
 
 

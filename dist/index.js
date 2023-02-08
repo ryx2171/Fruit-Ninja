@@ -36871,7 +36871,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ../../../../../src/assets/font/japan.otf */ "./src/assets/font/japan.otf"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ../../../../src/assets/font/japan.otf */ "./src/assets/font/japan.otf"), __webpack_require__.b);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_0___);
 // Module
@@ -49081,10 +49081,116 @@ exports["default"] = Preload;
 
 /***/ }),
 
-/***/ "./src/assets/components/CustomPixi.ts":
-/*!*********************************************!*\
-  !*** ./src/assets/components/CustomPixi.ts ***!
-  \*********************************************/
+/***/ "./src/assets/snd/SoundFX.ts":
+/*!***********************************!*\
+  !*** ./src/assets/snd/SoundFX.ts ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const howler_1 = __webpack_require__(/*! howler */ "./node_modules/howler/dist/howler.js");
+//AUTHOR: RICKY GUEVARRA
+//My custom class for Howler Js
+//I made this to control sound easier
+var STATUS;
+(function (STATUS) {
+    STATUS[STATUS["NORMAL"] = 0] = "NORMAL";
+    STATUS[STATUS["MUTED"] = 1] = "MUTED";
+})(STATUS || (STATUS = {}));
+class SoundFX {
+    constructor() {
+        //console.log("BGM_VOLUME",this.BGM_VOLUME);
+        this.howls_id = {};
+        this.howls = [];
+        this.BGM_VOLUME = 0.05;
+        this.SFX_VOLUME = 1;
+        this.SOUND_STATUS = STATUS.NORMAL;
+        this.initSounds();
+    }
+    //init sounds should be customized and load data from JSON file
+    //still work in progress for this class;
+    initSounds() {
+        let dir = "assets/snd/";
+        let ext = ".m4a";
+        let sound_list = [
+            //title/loop/volume
+            ["sfx-bgm-1", true, this.BGM_VOLUME],
+            ["sfx-cut-1", false, this.SFX_VOLUME],
+            ["sfx-cut-2", false, this.SFX_VOLUME],
+            ["sfx-sword", false, this.SFX_VOLUME],
+            ["sfx-intro-japan", false, this.SFX_VOLUME],
+        ];
+        let i = 0;
+        let len = sound_list.length;
+        for (i = 0; i < len; i++) {
+            this.howls_id[sound_list[i][0]] = i;
+            this.howls[i] = new howler_1.Howl({
+                src: [dir + sound_list[i][0] + ext],
+                loop: sound_list[i][1],
+                volume: sound_list[i][2]
+            });
+        }
+    }
+    play(snd_id) {
+        this.howls[this.howls_id[snd_id]].play();
+    }
+    stopAll() {
+        let i = 0;
+        for (i = 0; i < this.howls.length; i++) {
+            this.howls[i].stop();
+        }
+    }
+    stop(snd_id) {
+        this.howls[this.howls_id[snd_id]].stop();
+    }
+    mute() {
+        howler_1.Howler.volume(0);
+    }
+    toggleAudio(_id, _idle) {
+        if (_id == false) {
+            howler_1.Howler.mute(true);
+            if (_idle == false) {
+                this.SOUND_STATUS = STATUS.MUTED;
+            }
+        }
+        else if (_id == true) {
+            howler_1.Howler.mute(false);
+            if (_idle == false) {
+                this.SOUND_STATUS = STATUS.NORMAL;
+            }
+        }
+    }
+    fadeOutPlay(snd_id, _delay, _duration) {
+        let self = this;
+        this.play(snd_id);
+        this.howls[this.howls_id[snd_id]].volume(1);
+        let obj = {
+            volume: 1
+        };
+        gsap.to(obj, _duration, {
+            volume: 0,
+            delay: _delay,
+            onUpdate: function () {
+                this.howls[this.howls_id[snd_id]].volume(obj.volume);
+            },
+            onComplete: function () {
+                self.stop(snd_id);
+                this.howls[this.howls_id[snd_id]].volume(1);
+            }
+        });
+    }
+}
+exports["default"] = SoundFX;
+
+
+/***/ }),
+
+/***/ "./src/components/CustomPixi.ts":
+/*!**************************************!*\
+  !*** ./src/components/CustomPixi.ts ***!
+  \**************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -49115,7 +49221,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.PixiAtlas = void 0;
 const PIXI = __importStar(__webpack_require__(/*! pixi.js */ "./node_modules/pixi.js/dist/cjs/pixi.js"));
-const index_1 = __webpack_require__(/*! ../../index */ "./src/index.ts");
+const index_1 = __webpack_require__(/*! ../index */ "./src/index.ts");
 //-------------------------------------------------------------
 class PixiAtlas extends PIXI.AnimatedSprite {
     constructor(sheet, _id = "") {
@@ -49156,10 +49262,10 @@ exports.PixiAtlas = PixiAtlas;
 
 /***/ }),
 
-/***/ "./src/assets/components/Fruit.ts":
-/*!****************************************!*\
-  !*** ./src/assets/components/Fruit.ts ***!
-  \****************************************/
+/***/ "./src/components/Fruit.ts":
+/*!*********************************!*\
+  !*** ./src/components/Fruit.ts ***!
+  \*********************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -49191,8 +49297,8 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Fruits = void 0;
 const PIXI = __importStar(__webpack_require__(/*! pixi.js */ "./node_modules/pixi.js/dist/cjs/pixi.js"));
 const gsap_1 = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
-const CustomPixi_1 = __webpack_require__(/*! ./CustomPixi */ "./src/assets/components/CustomPixi.ts");
-const Utils_1 = __webpack_require__(/*! ./Utils */ "./src/assets/components/Utils.ts");
+const CustomPixi_1 = __webpack_require__(/*! ./CustomPixi */ "./src/components/CustomPixi.ts");
+const Utils_1 = __webpack_require__(/*! ./Utils */ "./src/components/Utils.ts");
 class Fruits extends PIXI.Sprite {
     constructor(obj_id, sheet, _id = "") {
         super();
@@ -49300,10 +49406,10 @@ exports.Fruits = Fruits;
 
 /***/ }),
 
-/***/ "./src/assets/components/MouseTrail.ts":
-/*!*********************************************!*\
-  !*** ./src/assets/components/MouseTrail.ts ***!
-  \*********************************************/
+/***/ "./src/components/MouseTrail.ts":
+/*!**************************************!*\
+  !*** ./src/components/MouseTrail.ts ***!
+  \**************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -49338,7 +49444,7 @@ class MouseTrail extends PIXI.Sprite {
     constructor(app) {
         super();
         // Get the texture for rope.
-        this.trailTexture = PIXI.Texture.from('../assets/img/trail2.png');
+        this.trailTexture = PIXI.Texture.from('assets/img/trail2.png');
         this.historyX = [];
         this.historyY = [];
         // historySize determines how long the trail will be.
@@ -49419,10 +49525,10 @@ exports.MouseTrail = MouseTrail;
 
 /***/ }),
 
-/***/ "./src/assets/components/Utils.ts":
-/*!****************************************!*\
-  !*** ./src/assets/components/Utils.ts ***!
-  \****************************************/
+/***/ "./src/components/Utils.ts":
+/*!*********************************!*\
+  !*** ./src/components/Utils.ts ***!
+  \*********************************/
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -49468,112 +49574,6 @@ exports.numberComma = numberComma;
 
 /***/ }),
 
-/***/ "./src/assets/snd/SoundFX.ts":
-/*!***********************************!*\
-  !*** ./src/assets/snd/SoundFX.ts ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-const howler_1 = __webpack_require__(/*! howler */ "./node_modules/howler/dist/howler.js");
-//AUTHOR: RICKY GUEVARRA
-//My custom class for Howler Js
-//I made this to control sound easier
-var STATUS;
-(function (STATUS) {
-    STATUS[STATUS["NORMAL"] = 0] = "NORMAL";
-    STATUS[STATUS["MUTED"] = 1] = "MUTED";
-})(STATUS || (STATUS = {}));
-class SoundFX {
-    constructor() {
-        //console.log("BGM_VOLUME",this.BGM_VOLUME);
-        this.howls_id = {};
-        this.howls = [];
-        this.BGM_VOLUME = 0.05;
-        this.SFX_VOLUME = 1;
-        this.SOUND_STATUS = STATUS.NORMAL;
-        this.initSounds();
-    }
-    //init sounds should be customized and load data from JSON file
-    //still work in progress for this class;
-    initSounds() {
-        let dir = "assets/snd/";
-        let ext = ".m4a";
-        let sound_list = [
-            //title/loop/volume
-            ["sfx-bgm-1", true, this.BGM_VOLUME],
-            ["sfx-cut-1", false, this.SFX_VOLUME],
-            ["sfx-cut-2", false, this.SFX_VOLUME],
-            ["sfx-sword", false, this.SFX_VOLUME],
-            ["sfx-intro-japan", false, this.SFX_VOLUME],
-        ];
-        let i = 0;
-        let len = sound_list.length;
-        for (i = 0; i < len; i++) {
-            this.howls_id[sound_list[i][0]] = i;
-            this.howls[i] = new howler_1.Howl({
-                src: [dir + sound_list[i][0] + ext],
-                loop: sound_list[i][1],
-                volume: sound_list[i][2]
-            });
-        }
-    }
-    play(snd_id) {
-        this.howls[this.howls_id[snd_id]].play();
-    }
-    stopAll() {
-        let i = 0;
-        for (i = 0; i < this.howls.length; i++) {
-            this.howls[i].stop();
-        }
-    }
-    stop(snd_id) {
-        this.howls[this.howls_id[snd_id]].stop();
-    }
-    mute() {
-        howler_1.Howler.volume(0);
-    }
-    toggleAudio(_id, _idle) {
-        if (_id == false) {
-            howler_1.Howler.mute(true);
-            if (_idle == false) {
-                this.SOUND_STATUS = STATUS.MUTED;
-            }
-        }
-        else if (_id == true) {
-            howler_1.Howler.mute(false);
-            if (_idle == false) {
-                this.SOUND_STATUS = STATUS.NORMAL;
-            }
-        }
-    }
-    fadeOutPlay(snd_id, _delay, _duration) {
-        let self = this;
-        this.play(snd_id);
-        this.howls[this.howls_id[snd_id]].volume(1);
-        let obj = {
-            volume: 1
-        };
-        gsap.to(obj, _duration, {
-            volume: 0,
-            delay: _delay,
-            onUpdate: function () {
-                this.howls[this.howls_id[snd_id]].volume(obj.volume);
-            },
-            onComplete: function () {
-                self.stop(snd_id);
-                this.howls[this.howls_id[snd_id]].volume(1);
-            }
-        });
-    }
-}
-exports["default"] = SoundFX;
-
-
-/***/ }),
-
 /***/ "./src/index.ts":
 /*!**********************!*\
   !*** ./src/index.ts ***!
@@ -49613,12 +49613,12 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Assets = void 0;
 const PIXI = __importStar(__webpack_require__(/*! pixi.js */ "./node_modules/pixi.js/dist/cjs/pixi.js"));
 const Preloader_1 = __importDefault(__webpack_require__(/*! ./Preloader */ "./src/Preloader.ts"));
-const CustomPixi_1 = __webpack_require__(/*! ./assets/components/CustomPixi */ "./src/assets/components/CustomPixi.ts");
+const CustomPixi_1 = __webpack_require__(/*! ./components/CustomPixi */ "./src/components/CustomPixi.ts");
 const gsap_1 = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 const GameSettings_1 = __importDefault(__webpack_require__(/*! ./GameSettings */ "./src/GameSettings.ts"));
-const Fruit_1 = __webpack_require__(/*! ./assets/components/Fruit */ "./src/assets/components/Fruit.ts");
-const Utils_1 = __webpack_require__(/*! ./assets/components/Utils */ "./src/assets/components/Utils.ts");
-const MouseTrail_1 = __webpack_require__(/*! ./assets/components/MouseTrail */ "./src/assets/components/MouseTrail.ts");
+const Fruit_1 = __webpack_require__(/*! ./components/Fruit */ "./src/components/Fruit.ts");
+const Utils_1 = __webpack_require__(/*! ./components/Utils */ "./src/components/Utils.ts");
+const MouseTrail_1 = __webpack_require__(/*! ./components/MouseTrail */ "./src/components/MouseTrail.ts");
 const SoundFX_1 = __importDefault(__webpack_require__(/*! ./assets/snd/SoundFX */ "./src/assets/snd/SoundFX.ts"));
 const cssstyle = __webpack_require__(/*! ./assets/css/style.css */ "./src/assets/css/style.css");
 const gameSettings = new GameSettings_1.default();

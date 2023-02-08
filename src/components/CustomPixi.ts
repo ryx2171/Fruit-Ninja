@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js'
-import {Assets} from '../../index'
+import {Assets} from '../index'
 
 //-------------------------------------------------------------
 export class PixiAtlas extends PIXI.AnimatedSprite{
