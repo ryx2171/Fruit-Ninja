@@ -61,10 +61,16 @@ export class Fruits extends PIXI.Sprite{
         this.interactiveChildren = true;
 
         this.on("pointerdown",()=>{
+            console.log("pointerdown");
             this.popFruit();
         }).on("pointerover",()=>{
+            console.log("pointerover");
             this.popFruit();
         })
+
+        this.addListener("pointerenter",()=>{
+            console.log("test12333");
+        });
 
     }
 
